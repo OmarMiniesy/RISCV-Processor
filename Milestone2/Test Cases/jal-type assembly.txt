@@ -1,0 +1,4 @@
+addi x5, x0, 5
+jal x2, loop
+addi x4, x0, 10
+loop: addi x6, x0, 15

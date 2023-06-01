@@ -1,0 +1,35 @@
+lw x1, 0(x0)
+lw x2, 4(x0)
+
+B1: beq x1,x2,L1
+B2: bne x1,x2,L2
+B3: blt x1,x2,L3
+B4: blt x2,x1,L4
+B5: bge x1,x2,L5
+B6: bge x2,x1,L6
+B7: bltu x1,x2,L7
+B8: bltu x2,x1, L8
+B9: bgeu x1,x2,L9
+B10: bgeu x2,x1,L10
+beq x0, x0, end
+
+L1: add x3,x0,x1
+beq x0,x0,B2
+L2: add x4,x0,x1
+beq x0,x0,B3
+L3: add x5,x0,x1
+beq x0,x0,B4
+L4: add x6,x0,x1
+beq x0,x0,B5
+L5: add x7,x0,x1
+beq x0,x0,B6
+L6: add x8,x0,x1
+beq x0,x0,B7
+L7: add x9,x0,x1
+beq x0,x0,B8
+L8: add x10,x0,x1
+beq x0,x0,B9
+L9: add x11,x0,x1
+beq x0,x0,B10
+L10: add x12,x0,x1
+end: add x0, x0, x0

@@ -1,0 +1,12 @@
+lw x1, 0(x0)
+lw x2,4(x0)
+
+add x3, x1, x2 
+xor x3, x1, x2
+or  x3, x1, x2
+and x3, x1, x2
+sll x3, x1, x2
+srl x3, x1, x2
+sra x3, x1, x2
+slt x3, x1, x2
+slt x3, x1, x2

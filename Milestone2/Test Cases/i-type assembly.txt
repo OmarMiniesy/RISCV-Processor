@@ -1,0 +1,11 @@
+lw x1, 0(x0)
+
+addi x2, x1, -5 
+xori x2, x1, 5
+ori  x2, x1, 5
+andi x2, x1, 5
+slli x2, x1, 5
+srli x2, x1, 5
+srai x2, x1, 5
+slti x2, x1, 5
+sltiu x2, x1, 5

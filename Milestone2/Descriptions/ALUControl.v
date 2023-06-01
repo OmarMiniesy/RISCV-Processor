@@ -1,0 +1,61 @@
+/*******************************************************************
+*
+* Module: ALUControl.v
+* Project: Single Cycle RISC-V Processor
+* Author: Omar Miniesy - Ziad Miniesy
+* Description: Control unit for the ALU that produces the correct flags
+*              for the ALU.
+*
+**********************************************************************/
+
+`timescale 1ns / 1ps
+`include "defines.v"
+
+module ALUControl(
+input [2:0] ALUOp,
+input [2:0] Inst14_12,
+input Inst30,
+output reg [3:0] ALUSelection
+);
+    
+    wire [6:0] concat;
+    assign concat = {ALUOp, Inst14_12, Inst30};
+
+    always @ (*) begin
+        casex(concat)
+        
+            7'b000xxxx: ALUSelection = `ALU_ADD;    // lw and sw and jalr add
+            7'b001xxxx: ALUSelection = `ALU_SUB;    // Branches SUB
+            
+            // R - TYPE
+            {3'b010, `F3_ADD, 1'b1}: ALUSelection = `ALU_SUB;
+            {3'b010, `F3_ADD, 1'b0}: ALUSelection = `ALU_ADD;
+            {3'b010, `F3_AND, 1'b0}: ALUSelection = `ALU_AND;
+            {3'b010, `F3_OR, 1'b0}: ALUSelection = `ALU_OR;
+            {3'b010, `F3_XOR, 1'b0}: ALUSelection = `ALU_XOR;
+            {3'b010, `F3_SLL, 1'b0}: ALUSelection = `ALU_SLL;
+            {3'b010, `F3_SRL, 1'b0}: ALUSelection = `ALU_SRL;
+            {3'b010, `F3_SRL, 1'b1}: ALUSelection = `ALU_SRL;
+            {3'b010, `F3_SLT, 1'b0}: ALUSelection = `ALU_SLT;
+            {3'b010, `F3_SLTU, 1'b0}: ALUSelection = `ALU_SLTU;
+
+            
+            // I - TYPE
+            {3'b011, `F3_ADD, 1'bx}: ALUSelection = `ALU_ADD;
+            {3'b011, `F3_XOR, 1'bx}: ALUSelection = `ALU_XOR;
+            {3'b011, `F3_OR, 1'bx}: ALUSelection = `ALU_OR;
+            {3'b011, `F3_AND, 1'bx}: ALUSelection = `ALU_AND;
+            {3'b011, `F3_SLL, 1'b0}: ALUSelection = `ALU_SLL;
+            {3'b011, `F3_SRL, 1'b0}: ALUSelection = `ALU_SRL;
+            {3'b011, `F3_SRL, 1'b1}: ALUSelection = `ALU_SRA;
+            {3'b011, `F3_SLT, 1'bx}: ALUSelection = `ALU_SLT;
+            {3'b011, `F3_SLTU, 1'bx}: ALUSelection = `ALU_SLTU;
+
+
+            {3'b100, 3'bxxx, 1'bx}: ALUSelection = `ALU_PASS;  // LUI
+            {3'b000, 3'bxxx, 1'bx}: ALUSelection = `ALU_PASS;  // auipc
+            
+            default :ALUSelection=`ALU_PASS;
+        endcase    
+    end
+endmodule
