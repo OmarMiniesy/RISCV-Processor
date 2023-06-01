@@ -1,0 +1,5 @@
+lb x1, 0(x0)
+lh x2, 0(x0)
+lw x3, 0(x0)
+lbu x4, 0(x0)
+lhu x5, 0(x0)

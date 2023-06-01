@@ -1,0 +1,4 @@
+addi x2, x0, 4
+jalr x3, x2, 8
+addi x1, x0, 5
+addi x5, x0, 10

@@ -1,0 +1,7 @@
+April 15: Added the pipeline registers IF/ID and ID/EX
+April 16: Tested the pipeline registers
+April 17: Fixed a problem in the control unit
+April 24: Supported single memory 
+April 25: Implemented forwarding unit
+April 27: Implemented flushing
+April 30: Fixed a problem in multiplication

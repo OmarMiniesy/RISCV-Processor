@@ -1,0 +1,7 @@
+April 15: Added the pipeline registers EX/MEM and MEM/WB
+April 16: Changed inputs and outputs for pipeline registers
+April 17: Fixed a problem in the control unit
+April 24: Testing for load and store in single memory 
+April 25: Fixed a problem in ebreak,ecall and fence
+April 27: Fixed a problem in branching and jumping
+April 30: Fixed a problem in multiplication
